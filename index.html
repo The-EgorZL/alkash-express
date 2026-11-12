@@ -278,7 +278,7 @@ const decl=(n)=>{const a=n%10,b=n%100;return b>10&&b<15?"отзывов":a==1?"�
  DB_URL: пусто = всё хранится только в браузере.
  Чтобы отзывы и аккаунты видели ВСЕ — вставь сюда адрес Firebase Realtime Database,
  например "https://мой-проект-default-rtdb.europe-west1.firebasedatabase.app" (без / в конце) */
-const DB_URL="";
+const DB_URL="https://otzyvy-alkash-express-default-rtdb.europe-west1.firebasedatabase.app/";
 const ls={get:(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const esc=t=>String(t).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const ukey=n=>encodeURIComponent(n.trim().toLowerCase()).replace(/\./g,"%2E");
