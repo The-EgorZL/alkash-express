@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Алкаш Экспресс — всё для тех, кто вчера был молодцом</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍺</text></svg>">
+<style>
+:root{--pink:#ff2d87;--orange:#ff7a00;--violet:#6a1bff;--yellow:#ffe14d;--ink:#1d1630;--bg:#f3f0fa;--card:#fff;--muted:#7b7391;--green:#12b76a}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding-bottom:env(safe-area-inset-bottom)}
+button{font:inherit;cursor:pointer;border:0;color:inherit;background:none}
+button:focus-visible,input:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+
+.btn{position:relative;overflow:hidden;transition:transform .12s,box-shadow .2s,filter .2s}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:scale(.93)}
+
+header{position:sticky;top:0;z-index:30;background:linear-gradient(100deg,var(--violet),var(--pink) 55%,var(--orange));color:#fff;padding:calc(10px + env(safe-area-inset-top)) 14px 12px;box-shadow:0 4px 18px #6a1bff44}
+.top{max-width:1200px;margin:auto;display:flex;align-items:center;gap:12px}
+.logo{font-weight:900;font-size:1.45rem;letter-spacing:-.5px;line-height:1;display:flex;align-items:center;gap:6px;white-space:nowrap;cursor:pointer;user-select:none}
+.logo small{display:block;font-size:.55rem;font-weight:700;letter-spacing:.5px;opacity:.9}
+.logo .mug{font-size:1.9rem;display:inline-block;animation:wob 3s ease-in-out infinite;transform-origin:50% 90%}
+@keyframes wob{0%,80%,100%{transform:rotate(0)}85%{transform:rotate(-14deg)}92%{transform:rotate(12deg)}}
+.search{flex:1;display:flex;background:#fff;border-radius:12px;overflow:hidden;min-width:0;box-shadow:0 2px 0 #0002}
+.search input{flex:1;min-width:0;border:0;padding:12px 14px;font-size:1rem;color:var(--ink);background:none}
+.search button{background:var(--ink);color:#fff;padding:0 16px;font-size:1.1rem}
+.cartbtn{background:var(--yellow);color:var(--ink);font-weight:800;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.cartbtn .n{background:var(--pink);color:#fff;border-radius:99px;min-width:22px;height:22px;display:grid;place-items:center;font-size:.8rem;padding:0 6px}
+.bump{animation:bump .4s}
+@keyframes bump{40%{transform:scale(1.25) rotate(-6deg)}}
+.strip{max-width:1200px;margin:8px auto 0;font-size:.78rem;display:flex;gap:16px;overflow:hidden;white-space:nowrap;opacity:.95}
+.strip span{animation:slide 18s linear infinite}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+
+main{max-width:1200px;margin:auto;padding:14px}
+.promo{border-radius:20px;background:linear-gradient(120deg,#1d1630,#4b1fa8 60%,#ff2d87);color:#fff;padding:22px;display:flex;align-items:center;justify-content:space-between;gap:12px;overflow:hidden;position:relative}
+.promo h1{font-size:clamp(1.4rem,4.5vw,2.4rem);line-height:1.05;font-weight:900}
+.promo h1 b{color:var(--yellow)}
+.promo p{margin-top:8px;opacity:.9;font-size:.95rem;max-width:460px}
+.promo .big{font-size:clamp(3.5rem,14vw,7rem);line-height:1;animation:wob 4s ease-in-out infinite}
+.promo .tag{position:absolute;right:-34px;top:16px;background:var(--yellow);color:var(--ink);font-weight:900;font-size:.75rem;padding:4px 40px;transform:rotate(35deg)}
+
+.cats{display:flex;gap:8px;overflow-x:auto;padding:14px 2px 6px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.chip{background:#fff;border-radius:99px;padding:9px 16px;font-weight:700;font-size:.9rem;white-space:nowrap;box-shadow:0 1px 0 #0002;transition:.15s transform,.2s background}
+.chip:active{transform:scale(.92)}
+.chip.on{background:var(--ink);color:#fff}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:8px 2px 4px;color:var(--muted);font-size:.9rem}
+.bar select{border:0;background:#fff;border-radius:10px;padding:8px 10px;font:inherit;color:var(--ink)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin-top:10px}
+.card{background:var(--card);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 0 #0001;transition:transform .2s,box-shadow .2s;animation:pop .45s both}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.97)}}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px #6a1bff22}
+.pic{aspect-ratio:1/1;overflow:hidden}
+.pic img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s;cursor:zoom-in}
+.card:hover .pic img{transform:scale(1.04)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.off{background:var(--pink);color:#fff;font-weight:900;font-size:.72rem;padding:3px 8px;border-radius:8px}
+.badge{background:var(--yellow);color:var(--ink);font-weight:800;font-size:.72rem;padding:3px 8px;border-radius:8px}
+.badge.nb{background:var(--green);color:#fff}
+.badge.gr{background:var(--ink);color:var(--yellow)}
+.info{padding:12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price b{font-size:1.4rem;font-weight:900;color:var(--pink)}
+.price s{color:var(--muted);font-size:.85rem}
+.name{font-size:.92rem;line-height:1.25;flex:1}
+.rate{text-align:left;padding:4px 0;font-size:.8rem;color:var(--muted)}
+.rate b{color:var(--orange)}
+.revs{display:flex;flex-direction:column;gap:6px}
+.rv{background:var(--bg);border-radius:10px;padding:8px 10px;font-size:.8rem;animation:pop .25s both}
+.rv b{font-size:.8rem}
+.rv span{color:var(--orange);font-size:.7rem;margin-left:6px}
+.rv p{margin-top:3px;line-height:1.3}
+.add{background:linear-gradient(100deg,var(--violet),var(--pink));color:#fff;font-weight:800;border-radius:12px;padding:11px;width:100%}
+.stepper{display:flex;align-items:center;justify-content:space-between;background:var(--bg);border-radius:12px;padding:4px}
+.stepper button{width:38px;height:38px;border-radius:9px;background:#fff;font-size:1.3rem;font-weight:800;box-shadow:0 1px 0 #0002}
+.stepper span{font-weight:800}
+.empty{grid-column:1/-1;text-align:center;padding:40px 10px;color:var(--muted)}
+.empty div{font-size:4rem}
+
+footer{text-align:center;color:var(--muted);font-size:.78rem;padding:26px 14px 40px;line-height:1.5}
+
+.veil{position:fixed;inset:0;background:#1d163088;backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .25s;z-index:40}
+.veil.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:#fff;z-index:50;transform:translateX(105%);transition:transform .35s cubic-bezier(.2,.9,.3,1);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top)}
+.drawer.on{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid #eee;font-weight:900;font-size:1.2rem}
+.x{width:38px;height:38px;border-radius:50%;background:var(--bg);font-size:1.1rem}
+.items{flex:1;overflow:auto;padding:10px 16px}
+.row{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed #ddd;animation:pop .3s both}
+.row .t{width:54px;height:54px;border-radius:12px;overflow:hidden;flex:none}
+.row .t img{width:100%;height:100%;object-fit:cover}
+.row .m{flex:1;min-width:0;font-size:.85rem}
+.row .m b{display:block;color:var(--pink);margin-top:2px}
+.row .stepper button{width:30px;height:30px;font-size:1.1rem}
+.df{padding:14px 16px calc(14px + env(safe-area-inset-bottom));border-top:1px solid #eee;background:#fff}
+.tot{display:flex;justify-content:space-between;font-size:1.2rem;font-weight:900;margin-bottom:4px}
+.note{color:var(--muted);font-size:.78rem;margin-bottom:10px}
+.go{background:linear-gradient(100deg,var(--orange),var(--pink));color:#fff;font-weight:900;border-radius:14px;padding:15px;width:100%;font-size:1.05rem}
+.go:disabled{filter:grayscale(1);opacity:.5;pointer-events:none}
+
+.modal{position:fixed;left:50%;top:50%;width:min(440px,calc(100% - 24px));max-height:calc(100% - 24px);overflow:auto;background:#fff;border-radius:24px;z-index:60;padding:22px;transform:translate(-50%,-46%) scale(.9);opacity:0;pointer-events:none;transition:.3s cubic-bezier(.2,.9,.3,1.2)}
+.modal.on{transform:translate(-50%,-50%);opacity:1;pointer-events:auto}
+.modal.zoom{padding:0;background:none;width:min(720px,calc(100% - 16px))}
+.zoom img{width:100%;border-radius:20px;display:block}
+.bank{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.3rem;margin-bottom:12px}
+.bank i{font-style:normal;width:42px;height:42px;border-radius:12px;background:#111;color:#ffd400;display:grid;place-items:center}
+.sum{background:var(--bg);border-radius:14px;padding:12px 14px;margin:10px 0 14px;display:flex;justify-content:space-between;font-weight:800}
+.pay{background:#111;color:#ffd400;font-weight:800;border-radius:14px;padding:16px;width:100%;line-height:1.3}
+.fine{color:var(--muted);font-size:.75rem;margin-top:10px;text-align:center}
+.load{text-align:center;padding:26px 0}
+.spin{width:64px;height:64px;border-radius:50%;border:7px solid #eee;border-top-color:var(--pink);margin:0 auto 16px;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.hide{display:none!important}
+
+.rc{text-align:center}
+.rc .ok{font-size:3.6rem;animation:bump .7s}
+.rc h2{font-size:1.4rem;margin:4px 0}
+.ticket{margin:14px 0;background:#fffbe6;border:2px dashed #d4b800;border-radius:12px;padding:14px;text-align:left;font-family:"Courier New",monospace;font-size:.82rem;position:relative}
+.ticket div{display:flex;justify-content:space-between;gap:10px;padding:2px 0}
+.ticket hr{border:0;border-top:1px dashed #b9a300;margin:8px 0}
+.ticket .tt{font-weight:900;font-size:.95rem}
+.stamp{position:absolute;right:8px;top:-14px;background:var(--green);color:#fff;font-family:inherit;font-weight:900;font-size:.7rem;padding:4px 8px;transform:rotate(6deg);border-radius:6px}
+.deliv{background:linear-gradient(100deg,var(--violet),var(--pink));color:#fff;border-radius:16px;padding:14px;margin-bottom:10px}
+.deliv small{opacity:.85;display:block}
+.deliv b{font-size:1.5rem;display:block;margin:2px 0}
+.status{background:#fff3e0;color:#b45300;border-radius:12px;padding:10px;font-weight:700;font-size:.9rem;display:flex;gap:8px;align-items:center;justify-content:center}
+.prog{height:8px;background:#eee;border-radius:9px;margin:12px 0;overflow:hidden}
+.prog i{display:block;height:100%;width:62%;background:repeating-linear-gradient(45deg,var(--orange) 0 10px,var(--pink) 10px 20px);animation:stripes 1s linear infinite;background-size:28px 28px}
+@keyframes stripes{to{background-position:28px 0}}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translate(-50%,120px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:14px;z-index:80;font-weight:700;font-size:.9rem;transition:transform .35s cubic-bezier(.2,.9,.3,1.3);max-width:calc(100% - 24px);text-align:center}
+.toast.on{transform:translate(-50%,0)}
+.conf{position:fixed;top:-20px;z-index:90;pointer-events:none;font-size:1.6rem;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+
+@media(max-width:560px){
+ .top{flex-wrap:wrap}.logo{font-size:1.2rem}.search{order:3;flex-basis:100%}.cartbtn{margin-left:auto}
+ .grid{grid-template-columns:repeat(2,1fr);gap:10px}.price b{font-size:1.15rem}
+ .promo{padding:18px}.promo .tag{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="top">
+  <div class="logo" onclick="scrollTo({top:0})"><span class="mug">🍺</span><div>Алкаш Экспресс<small>ДОСТАВИМ, КОГДА ОЧНЁШЬСЯ</small></div></div>
+  <div class="search"><input id="q" type="search" placeholder="Найти: рассол, оправдание, смысл жизни…" autocomplete="off"><button class="btn" aria-label="Найти">🔍</button></div>
+  <button class="cartbtn btn" id="cartBtn" aria-label="Корзина">🛒 <span>Корзина</span><span class="n" id="cnt">0</span></button>
+ </div>
+ <div class="strip"><span>🚚 Бесплатная доставка при заказе от 0 ₽ &nbsp;•&nbsp; 🎁 Скидка -88% каждому, кто читает это &nbsp;•&nbsp; 🔥 Сегодня уже купили 3 соседа &nbsp;•&nbsp; 🏦 Кэшбэк от Лошара Банка: ничего &nbsp;•&nbsp;&nbsp;</span></div>
+</header>
+
+<main>
+ <section class="promo">
+  <div><h1>Всё для тех, кто вчера был <b>молодцом</b></h1><p>Крупнейший маркетплейс утренних решений. Товары сертифицированы гаражами, одобрены соседями, не одобрены женой.</p></div>
+  <div class="big">🥴</div><div class="tag">-88% ВСЁ</div>
+ </section>
+ <div class="cats" id="cats"></div>
+ <div class="bar"><span id="found"></span>
+  <select id="sort" aria-label="Сортировка"><option value="pop">Сначала хиты</option><option value="cheap">Подешевле (ещё дешевле)</option><option value="rich">Подороже (зачем?)</option><option value="rate">По рейтингу</option></select></div>
+ <div class="grid" id="grid"></div>
+</main>
+
+<footer>© Алкаш Экспресс. Сайт юмористический, товаров не существует, деньги не списываются.<br>Чрезмерное употребление вредит здоровью. Чрезмерное оформление заказов — кошельку. Береги себя и печень.</footer>
+
+<div class="veil" id="veil"></div>
+
+<aside class="drawer" id="drawer" aria-label="Корзина">
+ <div class="dh"><span>🛒 Твоя корзина</span><button class="x btn" id="closeCart" aria-label="Закрыть">✕</button></div>
+ <div class="items" id="items"></div>
+ <div class="df">
+  <div class="tot"><span>Итого</span><span id="total">0 ₽</span></div>
+  <div class="note" id="saved"></div>
+  <button class="go btn" id="checkout">Оформить заказ</button>
+ </div>
+</aside>
+
+<div class="modal" id="payModal" role="dialog" aria-label="Оплата">
+ <div id="payStep">
+  <div class="bank"><i>Л</i>Лошара Банк</div>
+  <div>Оплата заказа в «Алкаш Экспресс»</div>
+  <div class="sum"><span>К оплате</span><span id="paySum"></span></div>
+  <button class="pay btn" id="payBtn">Оплатить в один клик с привязанной карты Лошара Банка (**** 2280)</button>
+  <button class="btn" id="payCancel" style="width:100%;padding:12px;margin-top:6px;color:var(--muted)">Передумал (как всегда)</button>
+  <div class="fine">Нажимая кнопку, ты соглашаешься с тем, что завтра не вспомнишь.</div>
+ </div>
+ <div class="load hide" id="loadStep"><div class="spin"></div><b id="loadTxt">Связываемся с Лошара Банком…</b></div>
+</div>
+
+<div class="modal" id="rcModal" role="dialog" aria-label="Заказ оформлен">
+ <div class="rc">
+  <div class="ok">✅</div>
+  <h2>Заказ оплачен!</h2>
+  <div style="color:var(--muted);font-size:.9rem">Лошара Банк одобрил всё, даже не глядя</div>
+  <div class="ticket"><span class="stamp">ОПЛАЧЕНО</span>
+   <div class="tt"><span>АЛКАШ ЭКСПРЕСС</span><span id="rcNo"></span></div>
+   <div><span id="rcDate0"></span><span>Лошара Банк *2280</span></div><hr>
+   <div id="rcList" style="display:block"></div><hr>
+   <div class="tt"><span>ИТОГО</span><span id="rcTotal"></span></div>
+   <div><span>Кэшбэк</span><span>0 ₽ + 1 совет</span></div>
+  </div>
+  <div class="deliv"><small>Ожидаемая доставка</small><b id="rcDate"></b><small>Трек-номер: <span id="rcTrack"></span></small></div>
+  <div class="prog"><i></i></div>
+  <div class="status">🚚 Курьер уже выехал, но зашел в гаражи</div>
+  <button class="go btn" id="rcClose" style="margin-top:14px">Отлично, жду (нет)</button>
+ </div>
+</div>
+
+<div class="modal zoom" id="zoom" onclick="veil.click()"><img id="zoomImg" alt=""></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const P=[
+{id:1,n:"Антипохмелин «Вчера не считается»",c:"Похмелье",p:239,o:1990,r:4.9,b:"hit",bg:"#ffd6e8",rv:[["Серёга из гаражей","Выпил две таблетки. Вчера действительно не считается. Паспорт тоже."],["Жена Серёги","Он утром бодрый. Подозрительно."]]},
+{id:2,n:"Тапок-бумеранг для жены (всегда возвращается)",c:"Семья",p:499,o:3990,r:4.7,b:"nb",bg:"#d8f5ff",rv:[["Витя","Бросил один раз. Тапок вернулся. Вместе с женой."],["Жена Вити","Отличный тапок. Теперь у нас их два, второй от него."],["Дядя Коля","Купил себе. Бросаю сам в себя для профилактики."]]},
+{id:3,n:"Балтика 9 винтажная, 2007 года, выдержанная в гараже",c:"Напитки",p:1499,o:12990,r:5.0,b:"gr",bg:"#fff1c2",rv:[["Коллекционер Миша","Не пил, храню. Банально страшно."]]},
+{id:4,n:"Рассол из-под огурцов (премиум, с укропом)",c:"Похмелье",p:129,o:1075,r:4.8,b:"hit",bg:"#dff7d2",rv:[["Андрей","Выпил утром — вернулась вера в людей и в понедельник."],["Тёща","Зять пьёт и не краснеет. Теперь краснею я: заказала себе."],["Лёха","Огурцы в подарок оказались главным. Банку не вернул."]]},
+{id:5,n:"Справка от врача, что ты просто устал",c:"Документы",p:239,o:1990,r:4.6,b:"nb",bg:"#e6e0ff",rv:[["Начальник отдела","Принял справку. Сам заказал две."],["Олег","Показал на работе. Дали отгул и пожали руку."],["Лена","Диагноз точный, лечения не нашла. Лечусь сном."]]},
+{id:6,n:"Шаурма «Утро после» (25 см, двойной соус)",c:"Закуски",p:119,o:990,r:4.9,b:"hit",bg:"#ffe3c7",rv:[["Паша","25 см — это правда. Линейкой мерил, жена не поверила."],["Кот Барсик","Мяу. (Отзыв удалён по просьбе кота.)"]]},
+{id:7,n:"Навигатор до дома (всегда показывает «Вы на месте»)",c:"Документы",p:1590,o:12990,r:3.1,b:"gr",bg:"#d5ecff",rv:[["Дима","Показывает «Вы здесь (опять в кустах)». Не соврал ни разу."],["Жена Димы","Он дошёл за 5 часов. Рекорд."]]},
+{id:8,n:"Будильник «Я проснусь» (нет, не проснёшься)",c:"Семья",p:249,o:1990,r:4.2,b:"nb",bg:"#ffd9d9",rv:[["Соня","Звонит громко. Проснулись соседи, я нет."],["Игорь","Пять звёзд. Проспал, зато не по своей вине."]]},
+{id:9,n:"Такси «Домой, но не сразу» (3 круга по району)",c:"Услуги",p:599,o:5000,r:4.7,b:"hit",bg:"#fff5a8",rv:[["Гена","Три круга — бары, друзья, ещё бары. Домой попал в среду."],["Таксист Рашид","Люблю эти заказы. Счётчик крутится быстрее, чем круги."]]},
+{id:10,n:"Набор оправданий для начальника (7 шт., на каждый день)",c:"Документы",p:299,o:2490,r:4.4,b:"nb",bg:"#f3d9ff",rv:[["Стас","В четверг «заболел питомец». Нет у меня питомца. Завёл ради конверта."],["Начальник Стаса","Я тоже это покупаю. Стас, не смотри."],["Бухгалтерия","Конверт «Суббота» применяется в любой день."]]},
+{id:11,n:"Пельмени «Последняя пачка в морозилке»",c:"Закуски",p:69,o:589,r:4.9,b:"hit",bg:"#e0f0ff",rv:[["Одинокий Валера","Варил со слезами. Пельменей было 7. Один я не доел из уважения."],["Мама","Сынок, а позвонить не мог?"]]},
+{id:12,n:"Сушняк в банке (концентрат, 0,5 л, вскрывать утром)",c:"Похмелье",p:149,o:1240,r:4.5,b:"gr",bg:"#ffe9b8",rv:[["Верблюд Гоша","Рекомендую. Но воду всё равно пью."],["Саня","Открыл банку — захотелось пить. Работает на 100%."]]},
+{id:13,n:"Дубликат ключей от гаража (чужого, но уютного)",c:"Услуги",p:1337,o:11140,r:4.8,b:"nb",bg:"#d9f3e6",rv:[["Борода","Подошёл к гаражу 127. И к 128. И к 131."],["Сторож дядя Миша","Опять они. Хоть чай приносят."],["Валентин","Ключ тот же, гараж не мой. Но жить можно."]]},
+{id:14,n:"Сгущёнка VIP из козьего молока (с ручкой от баклажки)",c:"Закуски",p:399,o:3320,r:4.9,b:"hit",bg:"#e9d9ff",rv:[["Фермер Семён","Коза довольна. Ручка от баклажки — гениально, носить удобно."],["Бабушка","В моё время ручек не было. Завидую."]]}
+];
+const IMG={1:"1.webp",2:"2.webp",3:"3.webp",4:"4.webp",5:"5.webp",6:"6.webp",7:"7.webp",8:"8.webp",9:"9.webp",10:"10.webp",11:"11.webp",12:"12.webp",13:"13.webp",14:"14.webp"};
+const BD={hit:["🔥 Хит продаж",""],nb:["👍 Выбор соседа","nb"],gr:["🏚️ Одобрено гаражами","gr"]};
+const CATS=["Всё",...new Set(P.map(x=>x.c))];
+const $=s=>document.querySelector(s);
+const rub=n=>n.toLocaleString("ru-RU")+" ₽";
+const decl=(n)=>{const a=n%10,b=n%100;return b>10&&b<15?"отзывов":a==1?"отзыв":a>1&&a<5?"отзыва":"отзывов"};
+let cart={},cat="Всё";
+
+function renderCats(){$("#cats").innerHTML=CATS.map(c=>`<button class="chip ${c===cat?"on":""}" data-c="${c}">${c}</button>`).join("")}
+function renderGrid(){
+ const q=$("#q").value.trim().toLowerCase(),s=$("#sort").value;
+ let L=P.filter(x=>(cat==="Всё"||x.c===cat)&&(!q||(x.n+x.c).toLowerCase().includes(q)));
+ if(s==="cheap")L.sort((a,b)=>a.p-b.p);if(s==="rich")L.sort((a,b)=>b.p-a.p);if(s==="rate")L.sort((a,b)=>b.r-a.r);
+ $("#found").textContent=L.length?`Найдено товаров: ${L.length}`:"";
+ $("#grid").innerHTML=L.length?L.map((x,i)=>{
+  const q=cart[x.id],bd=BD[x.b];
+  return `<article class="card" style="animation-delay:${i*40}ms">
+   <div class="pic" style="background:${x.bg}" data-zoom="${x.id}" title="Увеличить"><img src="${IMG[x.id]}" alt="${x.n}" loading="lazy"></div>
+   <div class="info"><div class="chips"><span class="off">-88%</span><span class="badge ${bd[1]}">${bd[0]}</span></div>
+   <div class="price"><b>${rub(x.p)}</b><s>${rub(x.o)}</s></div>
+   <div class="name">${x.n}</div>
+   <button class="rate btn" data-rev="${x.id}" aria-expanded="false"><b>★ ${x.r.toFixed(1)}</b> · ${x.rv.length} ${decl(x.rv.length)} ▾</button>
+   <div class="revs hide" id="rev${x.id}">${x.rv.map(v=>`<div class="rv"><b>${v[0]}</b><span>★★★★★</span><p>${v[1]}</p></div>`).join("")}</div>
+   ${q?`<div class="stepper"><button class="btn" data-d="-1" data-id="${x.id}">−</button><span>${q} в корзине</span><button class="btn" data-d="1" data-id="${x.id}">+</button></div>`
+      :`<button class="add btn" data-add="${x.id}">В корзину</button>`}</div></article>`}).join("")
+  :`<div class="empty"><div>🕳️</div>Ничего не найдено. Как и смысла в поиске в таком состоянии.</div>`;
+}
+function change(id,d){
+ cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];
+ renderAll();
+ const b=$("#cartBtn");b.classList.remove("bump");void b.offsetWidth;b.classList.add("bump");
+}
+function renderCart(){
+ const ids=Object.keys(cart),cnt=ids.reduce((a,k)=>a+cart[k],0);
+ $("#cnt").textContent=cnt;
+ let tot=0,old=0;
+ $("#items").innerHTML=ids.length?ids.map(k=>{const x=P.find(p=>p.id==k),q=cart[k];tot+=x.p*q;old+=x.o*q;
+  return `<div class="row"><div class="t" style="background:${x.bg}"><img src="${IMG[x.id]}" alt=""></div><div class="m">${x.n}<b>${rub(x.p*q)}</b></div>
+  <div class="stepper"><button class="btn" data-d="-1" data-id="${x.id}">−</button><span>${q}</span><button class="btn" data-d="1" data-id="${x.id}">+</button></div></div>`}).join("")
+  :`<div class="empty"><div>🛒</div>Пусто, как в холодильнике в 3 ночи.<br>Добавь что-нибудь.</div>`;
+ $("#total").textContent=rub(tot);
+ $("#saved").textContent=ids.length?`Ты сэкономил ${rub(old-tot)} (в теории) и 0 нервов`:"";
+ $("#checkout").disabled=!ids.length;
+ return tot;
+}
+function renderAll(){renderGrid();renderCart()}
+
+/* overlays */
+const veil=$("#veil");let openEl=null;
+function open(el){close();el.classList.add("on");veil.classList.add("on");openEl=el}
+function close(){if(openEl)openEl.classList.remove("on");veil.classList.remove("on");openEl=null}
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),1800)}
+
+document.addEventListener("click",e=>{
+ const a=e.target.closest("[data-add]");
+ if(a){change(+a.dataset.add,1);toast(["Добавлено. Печень в курсе.","В корзине. Назад дороги нет.","Хороший выбор, сосед!","Ещё один шаг к утру."][Math.random()*4|0]);return}
+ const d=e.target.closest("[data-d]");if(d){change(+d.dataset.id,+d.dataset.d);return}
+ const rv=e.target.closest("[data-rev]");
+ if(rv){const b=$("#rev"+rv.dataset.rev),o=b.classList.toggle("hide");rv.setAttribute("aria-expanded",!o);return}
+ const z=e.target.closest("[data-zoom]");if(z){$("#zoomImg").src=IMG[z.dataset.zoom];open($("#zoom"));return}
+ const c=e.target.closest("[data-c]");if(c){cat=c.dataset.c;renderCats();renderGrid()}
+});
+$("#q").addEventListener("input",renderGrid);$("#sort").addEventListener("change",renderGrid);
+$("#cartBtn").onclick=()=>open($("#drawer"));
+$("#closeCart").onclick=close;veil.onclick=()=>{if(openEl!==$("#rcModal")&&!$("#payBtn").disabled)close()};
+document.addEventListener("keydown",e=>{if(e.key==="Escape")veil.click()});
+
+/* checkout */
+$("#checkout").onclick=()=>{const t=renderCart();$("#paySum").textContent=rub(t);
+ $("#payStep").classList.remove("hide");$("#loadStep").classList.add("hide");$("#payBtn").disabled=false;open($("#payModal"))};
+$("#payCancel").onclick=()=>open($("#drawer"));
+const DATES=["31 ноября","32 декабря","30 февраля","31 апреля","45 мартобря","вчера в обед","после дождичка в четверг"];
+const TRK=["ГАРАЖ","ЗАБОР","КУСТЫ","ПОДЪЕЗД","НУ_ТЫ_ПОНЯЛ"];
+const pick=a=>a[Math.random()*a.length|0];
+const msgs=["Связываемся с Лошара Банком…","Ищем деньги на карте…","Занимаем у соседа…","Банк думает (долго)…","Почти готово, не дыши…"];
+$("#payBtn").onclick=()=>{
+ $("#payBtn").disabled=true;$("#payStep").classList.add("hide");$("#loadStep").classList.remove("hide");
+ let i=0;$("#loadTxt").textContent=msgs[0];
+ const iv=setInterval(()=>{$("#loadTxt").textContent=msgs[++i%msgs.length]},650);
+ setTimeout(()=>{clearInterval(iv);receipt()},3000);
+};
+function receipt(){
+ const ids=Object.keys(cart),tot=ids.reduce((a,k)=>a+P.find(p=>p.id==k).p*cart[k],0);
+ $("#rcList").innerHTML=ids.map(k=>{const x=P.find(p=>p.id==k);
+  return `<div style="display:flex;justify-content:space-between;gap:10px"><span>${x.n.replace(/\(.*?\)/g,"").trim()} ×${cart[k]}</span><span>${rub(x.p*cart[k])}</span></div>`}).join("");
+ $("#rcTotal").textContent=rub(tot);
+ $("#rcNo").textContent="№"+(Math.random()*9e5+1e5|0);
+ $("#rcDate0").textContent=new Date().toLocaleString("ru-RU",{dateStyle:"short",timeStyle:"short"});
+ $("#rcDate").textContent=pick(DATES);
+ $("#rcTrack").textContent="АЛК"+(Math.random()*9e7+1e7|0)+"-"+pick(TRK);
+ cart={};renderAll();open($("#rcModal"));confetti();
+}
+$("#rcClose").onclick=()=>{close();scrollTo({top:0,behavior:"smooth"})};
+function confetti(){
+ for(let i=0;i<34;i++){const s=document.createElement("span");s.className="conf";s.textContent=pick(["🍺","🥒","🎉","💸","🥴","🍾"]);
+  s.style.left=Math.random()*100+"vw";s.style.animationDuration=(2+Math.random()*2.2)+"s";s.style.animationDelay=Math.random()*.6+"s";
+  document.body.appendChild(s);setTimeout(()=>s.remove(),5000)}
+}
+renderCats();renderAll();
+</script>
+</body>
+  </html>
